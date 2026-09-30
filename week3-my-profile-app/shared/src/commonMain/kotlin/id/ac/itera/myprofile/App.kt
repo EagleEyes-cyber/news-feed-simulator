@@ -1,6 +1,7 @@
 package id.ac.itera.myprofile
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -44,9 +45,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import myprofileapp.shared.generated.resources.Res
+import myprofileapp.shared.generated.resources.photo_profile
+import org.jetbrains.compose.resources.painterResource
 
 data class ProfileData(
     val name: String,
@@ -171,21 +176,15 @@ fun ProfileHeader(
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Box(
+            Image(
+                painter = painterResource(Res.drawable.photo_profile),
+                contentDescription = "Foto profil",
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(110.dp)
                     .clip(CircleShape)
-                    .background(Color.White)
-                    .border(3.dp, Color.White, CircleShape),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Person,
-                    contentDescription = "Foto profil",
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(64.dp)
-                )
-            }
+                    .border(3.dp, Color.White, CircleShape)
+            )
 
             Spacer(modifier = Modifier.height(12.dp))
 
